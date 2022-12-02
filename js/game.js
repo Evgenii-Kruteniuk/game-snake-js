@@ -11,11 +11,13 @@ let box = 32;
 
 let score = 0;
 
+// Задаем рандомное появление еды в нашем поле
 let food = {
   x: Math.floor(Math.random() * 17 + 1) * box,
   y: Math.floor(Math.random() * 15 + 3) * box,
 };
 
+// Задаем первоначальное положение змейки
 let snake = [];
 snake[0] = {
   x: 9 * box,
@@ -52,10 +54,12 @@ function drawGame() {
     ctx.fillStyle = i == 0 ? "green" : "red";
     ctx.fillRect(snake[i].x, snake[i].y, box, box);
   }
-  // Пропишем текст
+
+  // Пропишем текст в табло
+  let scoreboard = `Ваш результат: ${score}`;
   ctx.fillStyle = "white";
   ctx.font = "50px Areal";
-  ctx.fillText(score, box * 2.5, box * 1.7);
+  ctx.fillText(scoreboard, box * 2.5, box * 1.7);
 
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
@@ -95,4 +99,5 @@ function drawGame() {
 
 // Без setInterval ф-я drawGame не отображаетсяю Мы вызываем эту ф- через каждые 350мс
 //Она регулирует скорость змейки
+
 let game = setInterval(drawGame, 350);
